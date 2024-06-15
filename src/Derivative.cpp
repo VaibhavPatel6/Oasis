@@ -30,10 +30,33 @@ auto Derivative<Expression>::Simplify() const -> std::unique_ptr<Expression>
     return simplifiedExpression->Differentiate(*simplifiedVar);
 }
 
-std::unique_ptr<Expression> Derivative<Expression, Expression>::Simplify(tf::Subflow&) const
+std::unique_ptr<Expression> Derivative<Expression, Expression>::Simplify(tf::Subflow& subflow) const
 {
-    // TODO: Actually implement
-    return Simplify();
+    std::unique_ptr<Expression> simplifiedExpression, simplifiedVar;
+
+    tf::Task expressionSimplifyTask = subflow.emplace([this, &simplifiedExpression](tf::Subflow& sbf) {
+        if (!mostSigOp) {
+            return;
+        }
+
+        simplifiedExpression = mostSigOp->Simplify(sbf);
+    });
+
+    tf::Task varSimplifyTask = subflow.emplace([this, &simplifiedVar](tf::Subflow& sbf) {
+        if (!leastSigOp) {
+            return;
+        }
+        
+        simplifiedVar = leastSigOp->Simplify(sbf);
+    });
+
+    subflow.join();
+
+    if (!simplifiedExpression || !simplifiedVar) {
+        return std::make_unique<Undefined>();
+    }
+
+    return simplifiedExpression->Differentiate(*simplifiedVar);
 }
 
 std::unique_ptr<Expression> Derivative<Expression, Expression>::Differentiate(const Expression& differentiationVariable) const
