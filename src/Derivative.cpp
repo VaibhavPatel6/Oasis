@@ -17,6 +17,7 @@
 #include <string>
 
 namespace Oasis {
+    
 Derivative<Expression>::Derivative(const Expression& exp, const Expression& var)
     : BinaryExpression(exp, var)
 {
