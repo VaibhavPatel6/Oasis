@@ -136,6 +136,55 @@ void InFixSerializer::Serialize(const Integral<>& integral)
     result = fmt::format("in({},{})", mostSigOpStr, leastSigOpStr);
 }
 
+// Add serialization for the new functions
+void InFixSerializer::Serialize(const Sec<>& sec) 
+{
+    sec.GetOperand().Serialize(*this);
+    const auto operandStr = getResult();
+
+    result = fmt::format("sec({})", operandStr);
+}
+
+void InFixSerializer::Serialize(const Arcsec<>& arcsec)
+{
+    arcsec.GetOperand().Serialize(*this);
+    const auto operandStr = getResult();
+
+    result = fmt::format("arcsec({})", operandStr);
+}
+
+void InFixSerializer::Serialize(const Csc<>& csc) 
+{
+    csc.GetOperand().Serialize(*this);
+    const auto operandStr = getResult();
+
+    result = fmt::format("csc({})", operandStr);
+}
+
+void InFixSerializer::Serialize(const Arccsc<>& arccsc) 
+{
+    arccsc.GetOperand().Serialize(*this);
+    const auto operandStr = getResult();
+
+    result = fmt::format("arccsc({})", operandStr);
+}
+
+void InFixSerializer::Serialize(const Cot<>& cot) 
+{
+    cot.GetOperand().Serialize(*this);
+    const auto operandStr = getResult();
+
+    result = fmt::format("cot({})", operandStr);
+}
+
+void InFixSerializer::Serialize(const Arccot<>& arccot) 
+{
+    arccot.GetOperand().Serialize(*this);
+    const auto operandStr = getResult();
+    
+    result = fmt::format("arccot({})", operandStr);
+}
+
 std::string InFixSerializer::getResult() const
 {
     return result;

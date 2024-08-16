@@ -47,6 +47,24 @@ class Derivative;
 template <IExpression Integrand, IExpression Differential>
 class Integral;
 
+template <typename OperandT>
+class Sec;
+
+template <typename OperandT>
+class Arcsec;
+
+template <typename OperandT>
+class Csc;
+
+template <typename OperandT>
+class Arccsc;
+
+template <typename OperandT>
+class Cot;
+
+template <typename OperandT>
+class Arccot;
+
 class SerializationVisitor {
 public:
     virtual void Serialize(const Real& real) = 0;
@@ -66,6 +84,15 @@ public:
     virtual void Serialize(const Magnitude<Expression>& magnitude) = 0;
     virtual void Serialize(const Derivative<Expression, Expression>& derivative) = 0;
     virtual void Serialize(const Integral<Expression, Expression>& integral) = 0;
+    virtual void Serialize(const Sec<Expression>& sec) = 0;
+    virtual void Serialize(const Arcsec<Expression>& arcsec) = 0;
+    virtual void Serialize(const Csc<Expression>& csc) = 0;
+    virtual void Serialize(const Arccsc<Expression>& arccsc) = 0;
+    virtual void Serialize(const Cot<Expression>& cot) = 0;
+    virtual void Serialize(const Arccot<Expression>& arccot) = 0;
+
+    virtual ~SerializationVisitor() = default;
+};
 
     virtual ~SerializationVisitor() = default;
 };

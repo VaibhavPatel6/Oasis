@@ -390,6 +390,108 @@ void MathMLSerializer::Serialize(const Integral<>& integral)
     result = mrow;
 }
 
+void MathMLSerializer::Serialize(const Sec<>& sec) 
+{
+    tinyxml2::XMLElement* mrow = doc.NewElement("mrow");
+
+    // sec
+    tinyxml2::XMLElement* const mo = doc.NewElement("mo");
+    mo->SetText("sec");
+
+    sec.GetOperand().Serialize(*this);
+    tinyxml2::XMLElement* operandElement = GetResult();
+
+    mrow->InsertEndChild(mo);
+    mrow->InsertEndChild(operandElement);
+
+    result = mrow;
+}
+
+void MathMLSerializer::Serialize(const Arcsec<>& arcsec) 
+{
+    tinyxml2::XMLElement* mrow = doc.NewElement("mrow");
+
+    // arcsec
+    tinyxml2::XMLElement* const mo = doc.NewElement("mo");
+    mo->SetText("arcsec");
+
+    arcsec.GetOperand().Serialize(*this);
+    tinyxml2::XMLElement* operandElement = GetResult();
+
+    mrow->InsertEndChild(mo);
+    mrow->InsertEndChild(operandElement);
+
+    result = mrow;
+}
+
+void MathMLSerializer::Serialize(const Csc<>& csc) 
+{
+    tinyxml2::XMLElement* mrow = doc.NewElement("mrow");
+
+    // csc
+    tinyxml2::XMLElement* const mo = doc.NewElement("mo");
+    mo->SetText("csc");
+
+    csc.GetOperand().Serialize(*this);
+    tinyxml2::XMLElement* operandElement = GetResult();
+
+    mrow->InsertEndChild(mo);
+    mrow->InsertEndChild(operandElement);
+
+    result = mrow;
+}
+
+void MathMLSerializer::Serialize(const Arccsc<>& arccsc) 
+{
+    tinyxml2::XMLElement* mrow = doc.NewElement("mrow");
+
+    // arccsc
+    tinyxml2::XMLElement* const mo = doc.NewElement("mo");
+    mo->SetText("arccsc");
+
+    arccsc.GetOperand().Serialize(*this);
+    tinyxml2::XMLElement* operandElement = GetResult();
+
+    mrow->InsertEndChild(mo);
+    mrow->InsertEndChild(operandElement);
+
+    result = mrow;
+}
+
+void MathMLSerializer::Serialize(const Cot<>& cot) 
+{
+    tinyxml2::XMLElement* mrow = doc.NewElement("mrow");
+
+    // cot
+    tinyxml2::XMLElement* const mo = doc.NewElement("mo");
+    mo->SetText("cot");
+
+    cot.GetOperand().Serialize(*this);
+    tinyxml2::XMLElement* operandElement = GetResult();
+
+    mrow->InsertEndChild(mo);
+    mrow->InsertEndChild(operandElement);
+
+    result = mrow;
+}
+
+void MathMLSerializer::Serialize(const Arccot<>& arccot) 
+{
+    tinyxml2::XMLElement* mrow = doc.NewElement("mrow");
+
+    // arccot
+    tinyxml2::XMLElement* const mo = doc.NewElement("mo");
+    mo->SetText("arccot");
+
+    arccot.GetOperand().Serialize(*this);
+    tinyxml2::XMLElement* operandElement = GetResult();
+
+    mrow->InsertEndChild(mo);
+    mrow->InsertEndChild(operandElement);
+
+    result = mrow;
+}
+
 tinyxml2::XMLDocument& MathMLSerializer::GetDocument() const
 {
     return doc;
